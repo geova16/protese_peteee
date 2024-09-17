@@ -1,12 +1,12 @@
 #include <BluetoothSerial.h>
 
-#include <Servo.h>
+#include <ESP32Servo.h>
 
-#define pino_servo_polegar_vertical 12
-#define pino_servo_polegar_horizontal 12
-#define pino_servo_polegar_indicador 12
-#define pino_servo_polegar_medio 12
-#define pino_servo_anelar_mindinho 12
+#define pino_servo_polegar_vertical 14
+#define pino_servo_polegar_horizontal 33
+#define pino_servo_polegar_indicador 26
+#define pino_servo_polegar_medio 25
+#define pino_servo_anelar_mindinho 27
 
 #define contrai 90
 #define relaxa 0
@@ -22,11 +22,11 @@ Servo servo_anelar_mindinho;
 void setup() {
   Serial.begin(115200);
   
-  servoMotor.attach(pino_servo_polegar_vertical); //Definindo o pino do servo motor
-  servoMotor.attach(pino_servo_polegar_horizontal); //Definindo o pino do servo motor
-  servoMotor.attach(pino_servo_polegar_indicador); //Definindo o pino do servo motor
-  servoMotor.attach(pino_servo_polegar_medio); //Definindo o pino do servo motor
-  servoMotor.attach(pino_servo_anelar_mindinho); //Definindo o pino do servo motor
+  servo_polegar_vertical.attach(pino_servo_polegar_vertical); //Definindo o pino do servo motor
+  servo_polegar_horizontal.attach(pino_servo_polegar_horizontal); //Definindo o pino do servo motor
+  servo_polegar_indicador.attach(pino_servo_polegar_indicador); //Definindo o pino do servo motor
+  servo_polegar_medio.attach(pino_servo_polegar_medio); //Definindo o pino do servo motor
+  servo_anelar_mindinho.attach(pino_servo_anelar_mindinho); //Definindo o pino do servo motor
 
   SerialBT.begin("MAOZONA_ESP32"); // Nome do dispositivo Bluetooth
 }
@@ -59,11 +59,11 @@ void loop() {
         joia ();
         break;
       
-      case '5':
+      case '7':
         fecha ();
         break;
       
-      case '6':
+      case '8':
         abre ();
         break;
 
@@ -153,4 +153,3 @@ void fazoL (){
   servo_anelar_mindinho.attach(contrai);
 
 }
-
