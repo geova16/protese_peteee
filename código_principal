@@ -1,0 +1,156 @@
+#include <BluetoothSerial.h>
+
+#include <Servo.h>
+
+#define pino_servo_polegar_vertical 12
+#define pino_servo_polegar_horizontal 12
+#define pino_servo_polegar_indicador 12
+#define pino_servo_polegar_medio 12
+#define pino_servo_anelar_mindinho 12
+
+#define contrai 90
+#define relaxa 0
+
+BluetoothSerial SerialBT;
+
+Servo servo_polegar_vertical;
+Servo servo_polegar_horizontal;
+Servo servo_polegar_indicador;
+Servo servo_polegar_medio;
+Servo servo_anelar_mindinho;
+
+void setup() {
+  Serial.begin(115200);
+  
+  servoMotor.attach(pino_servo_polegar_vertical); //Definindo o pino do servo motor
+  servoMotor.attach(pino_servo_polegar_horizontal); //Definindo o pino do servo motor
+  servoMotor.attach(pino_servo_polegar_indicador); //Definindo o pino do servo motor
+  servoMotor.attach(pino_servo_polegar_medio); //Definindo o pino do servo motor
+  servoMotor.attach(pino_servo_anelar_mindinho); //Definindo o pino do servo motor
+
+  SerialBT.begin("MAOZONA_ESP32"); // Nome do dispositivo Bluetooth
+}
+
+void loop() {
+  if (SerialBT.available()) {
+    char command = SerialBT.read();
+    switch (command) {
+      case '1':
+        hangloose ();
+        break;
+      
+      case '2':
+        joia ();
+        break;
+      
+      case '3':
+        rock ();
+        break;
+      
+      case '4':
+        joia ();
+        break;
+
+      case '5':
+        hangloose ();
+        break;
+      
+      case '6':
+        joia ();
+        break;
+      
+      case '5':
+        fecha ();
+        break;
+      
+      case '6':
+        abre ();
+        break;
+
+      default:
+        break;
+    }
+  }
+}
+
+
+void fecha (){
+
+  servo_polegar_vertical.attach(contrai);
+  servo_polegar_horizontal.attach(contrai);
+  servo_polegar_indicador.attach(contrai);
+  servo_polegar_medio.attach(contrai);
+  servo_anelar_mindinho.attach(contrai);
+
+}
+
+void abre (){
+
+  servo_polegar_vertical.attach(relaxa);
+  servo_polegar_horizontal.attach(relaxa);
+  servo_polegar_indicador.attach(relaxa);
+  servo_polegar_medio.attach(relaxa);
+  servo_anelar_mindinho.attach(relaxa);
+
+}
+
+void hangloose () {
+
+  servo_polegar_vertical.attach(relaxa);
+  servo_polegar_horizontal.attach(relaxa);
+  servo_polegar_indicador.attach(contrai);
+  servo_polegar_medio.attach(contrai);
+  servo_anelar_mindinho.attach(relaxa);
+
+}
+
+void joia (){
+
+  servo_polegar_vertical.attach(relaxa);
+  servo_polegar_horizontal.attach(relaxa);
+  servo_polegar_indicador.attach(contrai);
+  servo_polegar_medio.attach(contrai);
+  servo_anelar_mindinho.attach(relaxa);
+
+}
+
+void rock (){
+
+  servo_polegar_vertical.attach(contrai);
+  servo_polegar_horizontal.attach(contrai);
+  servo_polegar_indicador.attach(relaxa);
+  servo_polegar_medio.attach(contrai);
+  servo_anelar_mindinho.attach(relaxa);
+
+}
+
+void paz (){
+
+  servo_polegar_vertical.attach(contrai);
+  servo_polegar_horizontal.attach(contrai);
+  servo_polegar_indicador.attach(relaxa);
+  servo_polegar_medio.attach(relaxa);
+  servo_anelar_mindinho.attach(contrai);
+
+}
+
+void contaAteDez (){
+
+  servo_polegar_vertical.attach(relaxa);
+  servo_polegar_horizontal.attach(relaxa);
+  servo_polegar_indicador.attach(relaxa);
+  servo_polegar_medio.attach(relaxa);
+  servo_anelar_mindinho.attach(relaxa);
+
+}
+
+void fazoL (){
+
+  servo_polegar_vertical.attach(relaxa);
+  servo_polegar_horizontal.attach(relaxa);
+  servo_polegar_indicador.attach(relaxa);
+  servo_polegar_medio.attach(contrai);
+  servo_anelar_mindinho.attach(contrai);
+
+}
+
